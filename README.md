@@ -25,4 +25,25 @@ con la primera operación, se comenzarán a mostrar operación tras operaciones 
  los números, las operaciones solo aparecerán una vez llevando a cabo una mayor complejidad 
 en el calculo mental para asegurar que haga la operación en tiempo, cuando termine el reto 
 el usuario escribirá la respuesta y seguirá con el siguiente reto hasta completar todos. 
-Al finalizar se presentara su puntación y las respuestas del usuario como la respuesta correcta.  
+Al finalizar se presentara su puntación y las respuestas del usuario como la respuesta correcta. 
+
+
+Algoritmo:
+EO <-- seleccion de nivel, respuesta de usuario
+
+Si nivel 1 entonces
+Velocidad entre operaciones 2 segundos
+puntaje= a 0
+(Mostrar operaciones de suma y resta aleatoriamente)
+ciclo 
+	mostrar numero aleatorio del 1 al 999 con signo aleatorio + o -
+	Guardar como res
+	mostrar numero aleatorio del 1 al 999 con signo aleatorio + o 
+	res <-- +,- res
+	repetir 10 veces
+resultado usuario <--input entero 
+si resultado usuario = a res
+entonces puntaje <--puntaje + 10	
+repetir ciclo 10 veces
+print puntaje, res, resultado usuario
+
