@@ -1,77 +1,59 @@
-#Mi Estado inicial es la libreria de ejercicos
-#Mi estado inicial son los resultados del usuario
-#Mi estado final es que verifique si es cierto o no
 
-puntaje = 100 
-#El puntaje se le sumaria o restaria si esta bien
-# o mal la pregunt, es una variable que se actualizara
-# durante todo el programa
+puntaje = 100
 
-resultado_c1= 24 + 39 - 11 + 62 - 49
-resultado_c2= 25 * 5 + 15 * 2
-resultado_c3= 35 / 5 - 2 * 10 + 13 / 9
+nivel = int(input("niivel de dificultad 1,2 o 3"))
 
-ejercicio_1= str("24 + 39 - 11 + 62 - 49")
-ejercicio_2= str("25 * 5 + 15 * 2")
-ejercicio_3= str("35 / 5 - 2 * 10 + 13 / 9")
+def comprobacion(resultado, puntaje, resultado_u):
+    if resultado == resultado_u:
+        puntaje = puntaje + 10
+        print("correcto")
+        print(puntaje)
+        return puntaje
+    else:
+        print("resultado correcto",resultado)
+        puntaje = puntaje - 10
+        print(puntaje)
+        return puntaje
+#Esta funcion la ocupare al terminar cada ejercicio
 
-#Aqui esta mi biblioteca de resultados y strings  
- 
-print(ejercicio_1)
-resultado_u1 = float(input("resuelva"))
+#Todavia no se como generar aleatoriamente numeros 
+#para hacer una función para generar ejercicios distintos
+#El estado inicial de esta funcion será indicar el nivel de dificultad
+#si es 1 serán sumas si es 2 serán restaa... etc
+#El estado final será arrojar la operacion con numeros aleatorios
+# que se imprima y regresar resultado 
+#por lo mientras yo escribire los ejercicios a mano
 
-#aqui se muestra el string y el espacio a resolver
+def nivel1():
+    ejercicio_1 = str("24 + 39 - 11 + 62 - 49")
+    resultado = 24 + 39 - 11 + 62 - 49
+    print(ejercicio_1)
+    return resultado
 
-if resultado_u1 == resultado_c1:
-	 print("correcto")
-	 puntaje = puntaje + 10
-	 print("puntaje:",puntaje) 
-
-#Por error de sintaxis lo escribi con dos simbolos ==
+    
+def nivel2():
+    ejercicio_1 = str("25 * 5 + 15 * 2")
+    resultado = 25 * 5 + 15 * 2
+    print(ejercicio_1)
+    return resultado
+    
+def nivel3():
+    ejercicio_1 = str("35 / 5 - 2 * 10 + 13 / 9")
+    resultado = 35 / 5 - 2 * 10 + 13 / 9
+    print(ejercicio_1)
+    return resultado
+# en teoria las funciones de nivel 1 nivel 2 sería generar el ejercicio
+# en una version posterior no estaran estas funciones
+  
+if nivel == 1:
+    resultado = nivel1()
+elif nivel == 2:
+    resultado = nivel2()
 else:
-	 print("resultado correcto",resultado_c1) 
-	 puntaje = puntaje -10
-	 print("puntaje:",puntaje)
+    resultado = nivel3()
+#para el caso 3 sigo investigando como comparar los decimales pero si funciona   
+    
+resultado_u = float(input("resuelva "))
+puntaje = comprobacion(resultado, puntaje, resultado_u)
 
-#Si se tiene mal aparacera correcto y si no mostrara el resultado correcto
-
-#Este procedimiento para el resto de los ejercicios
-
-print(ejercicio_2)
-resultado_u2 = float(input("resuelva"))
-
-if resultado_u2 == resultado_c2:
-	 print("correcto")
-	 puntaje = puntaje + 10
-	 print("puntaje:",puntaje) 
-else:
-	print("resultado correcto",resultado_c2)
-	puntaje = puntaje -10
-	print("puntaje:",puntaje)
-
-#Aqui el resultado correcto aparece como 155 por la jeraquia en python
-#La idea es que los numeros en el programa final vayan apareciendo en orden para hacer operaciones
-#De modo que se leeria de izquierda a derecha paso por paso, estoy investigando como resolver esto
-
-print(ejercicio_3)
-resultado_u3 = float(input("resuelva"))
-
-if resultado_u3 == resultado_c3:
-	 print("correcto")
-	 puntaje = puntaje + 10
-	 print("puntaje:",puntaje) 
-else:
-	 print("resultado correcto",resultado_c3)
-	 puntaje = puntaje -10
-	 print("puntaje:",puntaje)
-
-
-#Por las mismas razones del orden de jerarquía el resultado fue -11.55
-#Mientras que si se leyera de izuierda a derecha el resultado que se buscaba era 7
-#Por diseño una vez resuelva este problema no habra numeros decimales ya que el 
-#Calculo mental no se practica con puntos decimales dejando todas las variables en 
-#Int, enteros
-
-
-
-
+    
