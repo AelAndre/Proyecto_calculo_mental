@@ -1,18 +1,22 @@
+import random
+#Aqui puse la libreria para generar numeros aleatorios para los diferentes
+#niveles de dificultad, este generador de numeros aleatorios lo investigue y
+#lo saque de https://j2logo.com/python/generar-numeros-aleatorios-en-python/#
 
 puntaje = 100
 
-nivel = int(input("niivel de dificultad 1,2 o 3"))
+nivel = int(input("niivel de dificultad 1,2 ,3 o infinito"))
 
 def comprobacion(resultado, puntaje, resultado_u):
     if resultado == resultado_u:
         puntaje = puntaje + 10
         print("correcto")
-        print(puntaje)
+        print("tu puntaje es", puntaje)
         return puntaje
     else:
         print("resultado correcto",resultado)
         puntaje = puntaje - 10
-        print(puntaje)
+        print("tu puntaje es", puntaje)
         return puntaje
 #Esta funcion la ocupare al terminar cada ejercicio
 
@@ -42,18 +46,53 @@ def nivel3():
     resultado = 35 / 5 - 2 * 10 + 13 / 9
     print(ejercicio_1)
     return resultado
+
+def infinito():
+    num = random.randint(1, 100)
+    num1 = random.randint(1, 100)
+    num2 = random.randint(1, 100)
+    num3 = random.randint(1, 100)
+    num4 = random.randint(1, 100)
+    #este codigo para generar numeros enteros lo aprendi y lo obtuve de 
+    #https://j2logo.com/python/generar-numeros-aleatorios-en-python/#
+    print(num,  "+",  num1 , "-",  num2,  "+",  num3,  "+" , num4)
+    resultado = num + num1 - num2 + num3 + num4
+    return resultado
 # en teoria las funciones de nivel 1 nivel 2 sería generar el ejercicio
 # en una version posterior no estaran estas funciones
   
 if nivel == 1:
     resultado = nivel1()
+    resultado_u = float(input("resuelva "))
+    puntaje = comprobacion(resultado, puntaje, resultado_u)
 elif nivel == 2:
     resultado = nivel2()
-else:
+    resultado_u = float(input("resuelva "))
+    puntaje = comprobacion(resultado, puntaje, resultado_u)
+elif nivel == 3:
     resultado = nivel3()
+    resultado_u = float(input("resuelva "))
+    puntaje = comprobacion(resultado, puntaje, resultado_u)
+elif nivel == 4:
+    resultado_u = float(input("resuelva "))
+    resultado = infinito()
+    puntaje = comprobacion(resultado, puntaje, resultado_u)
+    while resultado_u == resultado:
+        resultado_u = float(input("resuelva "))
+        resultado = infinito()
+        puntaje = comprobacion(resultado, puntaje, resultado_u)
+    
+#Los if si funcionan, agregue el nuevo modo infinito por lo cual ya no podia
+#usar else
+#el ciclo while no es el más eficiente pues podría incorporar los pasos previos
+# y no repetirlos fuera del ciclo, sin embargo estoy revisando mi algoritmo 
+#para comprobalro, de momento funciona
+    
+    
 #para el caso 3 sigo investigando como comparar los decimales pero si funciona   
     
-resultado_u = float(input("resuelva "))
-puntaje = comprobacion(resultado, puntaje, resultado_u)
+
+
+
 
     
