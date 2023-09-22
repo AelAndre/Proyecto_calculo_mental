@@ -3,7 +3,7 @@ import random
 #niveles de dificultad, este generador de numeros aleatorios lo investigue y
 #lo saque de https://j2logo.com/python/generar-numeros-aleatorios-en-python/#
 
-puntaje = 100
+puntaje = 0
 
 nivel = int(input("niivel de dificultad 1,2 ,3 o infinito"))
 
@@ -29,9 +29,13 @@ def comprobacion(resultado, puntaje, resultado_u):
 #por lo mientras yo escribire los ejercicios a mano
 
 def nivel1():
-    ejercicio_1 = str("24 + 39 - 11 + 62 - 49")
-    resultado = 24 + 39 - 11 + 62 - 49
-    print(ejercicio_1)
+    num = random.randint(1, 30)
+    num1 = random.randint(1, 30)
+    num2 = random.randint(1, 30)
+    num3 = random.randint(1, 30)
+    num4 = random.randint(1, 30)
+    print( num, "+", num1, "+", num2, "+", num3, " -", num4)
+    resultado = num + num1 + num2 + num3 - num4
     return resultado
 
     
@@ -62,9 +66,18 @@ def infinito():
 # en una version posterior no estaran estas funciones
   
 if nivel == 1:
-    resultado = nivel1()
-    resultado_u = float(input("resuelva "))
-    puntaje = comprobacion(resultado, puntaje, resultado_u)
+    ejercicio = 0
+    while ejercicio < 10:
+        ejercicio = ejercicio + 1
+        resultado = nivel1()
+        resultado_u = float(input("resuelva "))
+        puntaje = comprobacion(resultado, puntaje, resultado_u)
+        print("siguiente ejercicio")
+    if puntaje == 100 :
+        print("puntaje perfecto!!!, sigue practicando", puntaje)
+    else:
+        print("puntaje final", puntaje)
+       
 elif nivel == 2:
     resultado = nivel2()
     resultado_u = float(input("resuelva "))
@@ -74,8 +87,8 @@ elif nivel == 3:
     resultado_u = float(input("resuelva "))
     puntaje = comprobacion(resultado, puntaje, resultado_u)
 elif nivel == 4:
-    resultado_u = float(input("resuelva "))
     resultado = infinito()
+    resultado_u = float(input("resuelva "))
     puntaje = comprobacion(resultado, puntaje, resultado_u)
     while resultado_u == resultado:
         resultado_u = float(input("resuelva "))
