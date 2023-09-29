@@ -2,10 +2,25 @@ import random
 #Aqui puse la libreria para generar numeros aleatorios para los diferentes
 #niveles de dificultad, este generador de numeros aleatorios lo investigue y
 #lo saque de https://j2logo.com/python/generar-numeros-aleatorios-en-python/#
+def instrucciones():
+    print("existen diversos modos de entrenamiento")
+    matriz = [["facil ", 1], 
+              ["medio ", 2],
+              ["dificil ", 3],
+              ["infinito ", 4],
+              ["multijugador ", 5]]
+    for nivel in matriz:
+        print(f"{nivel[0]}\t{nivel[1]}")
+#aqui puse mi primera lista en forma de matriz para demostrar este aspecto
+#la verdad no se porque me imprime "none", yo solo busque como dar el espacio
+# entre el nivel y el numero, el f"[]\t[]" lo saque de 
+#https://es.stackoverflow.com/questions/372221/c%C3%B3mo-mostrar-una-matriz-en-python
 
+print(instrucciones())
+                    
 puntaje = 0
 
-nivel = int(input("niivel de dificultad 1,2 ,3 o infinito"))
+nivel = int(input("seleccione nivel"))
 
 def comprobacion(resultado, puntaje, resultado_u):
     if resultado == resultado_u:
@@ -34,22 +49,28 @@ def nivel1():
     num2 = random.randint(1, 30)
     num3 = random.randint(1, 30)
     num4 = random.randint(1, 30)
-    print( num, "+", num1, "+", num2, "+", num3, " -", num4)
+    print( num, "+", num1, "+", num2, "+", num3, "-", num4)
     resultado = num + num1 + num2 + num3 - num4
     return resultado
 
-    
 def nivel2():
-    ejercicio_1 = str("25 * 5 + 15 * 2")
-    resultado = 25 * 5 + 15 * 2
-    print(ejercicio_1)
+    num = random.randint(5, 10)
+    num1 = random.randint(5, 10)
+    num2 = random.randint(1, 10)
+    num3 = random.randint(1, 10)
+    print("(", num, "*", num1, ")", "-", "(", num2, "*", num3, ")")
+    resultado = (num * num1) - (num2 * num3)
     return resultado
     
 def nivel3():
-    ejercicio_1 = str("35 / 5 - 2 * 10 + 13 / 9")
-    resultado = 35 / 5 - 2 * 10 + 13 / 9
-    print(ejercicio_1)
+    num = random.randint(5, 10)
+    num1 = random.randint(1, 5)
+    num2 = random.randint(1, 10)
+    num3 = random.randint(1, 10)
+    print("(", num, "/", num1, ")", "+", "(", num2, "*", num3, ")")
+    resultado = (num / num1) + (num2 * num3)
     return resultado
+
 
 def infinito():
     num = random.randint(1, 100)
@@ -62,9 +83,19 @@ def infinito():
     print(num,  "+",  num1 , "-",  num2,  "+",  num3,  "+" , num4)
     resultado = num + num1 - num2 + num3 + num4
     return resultado
-# en teoria las funciones de nivel 1 nivel 2 sería generar el ejercicio
-# en una version posterior no estaran estas funciones
-  
+
+def multijugador(nivel1):
+    tamaño = int(input("ingrese el numero de jugadores: "))
+    matriz = []
+    for i in range(tamaño):
+        nombre = str(input("ingrese nombre del jugador: "))
+        matriz.append(nombre)
+    print("los jugadores son", matriz)
+    lista_anidada = [[nombre, nivel1()] for nombre in matriz]
+    print(lista_anidada)
+
+
+
 if nivel == 1:
     ejercicio = 0
     while ejercicio < 10:
@@ -79,13 +110,32 @@ if nivel == 1:
         print("puntaje final", puntaje)
        
 elif nivel == 2:
-    resultado = nivel2()
-    resultado_u = float(input("resuelva "))
-    puntaje = comprobacion(resultado, puntaje, resultado_u)
+    ejercicio = 0
+    while ejercicio < 10:
+        ejercicio = ejercicio + 1
+        resultado = nivel2()
+        resultado_u = float(input("resuelva "))
+        puntaje = comprobacion(resultado, puntaje, resultado_u)
+        print("siguiente ejercicio")
+    if puntaje == 100 :
+        print("puntaje perfecto!!!, sigue practicando", puntaje)
+    else:
+        print("puntaje final", puntaje)       
 elif nivel == 3:
-    resultado = nivel3()
-    resultado_u = float(input("resuelva "))
-    puntaje = comprobacion(resultado, puntaje, resultado_u)
+    ejercicio = 0
+    while ejercicio < 10:
+        ejercicio = ejercicio + 1
+        resultado = nivel3()
+        resultado_u = float(input("resuelva "))
+        puntaje = comprobacion(resultado, puntaje, resultado_u)
+        print("siguiente ejercicio")
+    if puntaje == 100 :
+        print("puntaje perfecto!!!, sigue practicando", puntaje)
+    else:
+        print("puntaje final", puntaje)  
+#me acabo de dar cuenta que puedo hacer una funcion porque se repite el sistema 
+#en los 3 niveles, lo empezaré a hacer
+#tambien hay error para comparar los resultados por el numero de decimales
 elif nivel == 4:
     resultado = infinito()
     resultado_u = float(input("resuelva "))
@@ -94,15 +144,27 @@ elif nivel == 4:
         resultado_u = float(input("resuelva "))
         resultado = infinito()
         puntaje = comprobacion(resultado, puntaje, resultado_u)
-    
-#Los if si funcionan, agregue el nuevo modo infinito por lo cual ya no podia
-#usar else
-#el ciclo while no es el más eficiente pues podría incorporar los pasos previos
-# y no repetirlos fuera del ciclo, sin embargo estoy revisando mi algoritmo 
-#para comprobalro, de momento funciona
-    
-    
-#para el caso 3 sigo investigando como comparar los decimales pero si funciona   
+elif nivel == 5:
+    multijugador(nivel1())
+    #mi matriz normal si funciona lo que estoy investigando es como anidar el 
+    #puntaje y hacerlo de forma eficiente
+    #estaba pensando en correr las funciones de las preguntas dentro del 
+    #multijugador para evitar los errores de variabes locales en el puntaje y 
+    #revolverme
+    #mi matriz si funciona y funcionaria algo asi
+
+def multijugador1():
+    tamaño = int(input("ingrese el numero de jugadores: "))
+    matriz = []
+    for i in range(tamaño):
+        nombre = str(input("ingrese nombre del jugador: "))
+        matriz.append(nombre)
+    print("los jugadores son", matriz)
+    lista_anidada = [[nombre, i + 1] for i, nombre in enumerate(matriz)]
+    print(lista_anidada)
+#en vez de que se agreguen i + 1 se ira agregando el puntaje de cada jugador
+multijugador1()
+
     
 
 
