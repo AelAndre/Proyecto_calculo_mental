@@ -11,12 +11,11 @@ def instrucciones():
               ["multijugador ", 5]]
     for nivel in matriz:
         print(f"{nivel[0]}\t{nivel[1]}")
-#aqui puse mi primera lista en forma de matriz para demostrar este aspecto
-#la verdad no se porque me imprime "none", yo solo busque como dar el espacio
+#busque como dar el espacio
 # entre el nivel y el numero, el f"[]\t[]" lo saque de 
 #https://es.stackoverflow.com/questions/372221/c%C3%B3mo-mostrar-una-matriz-en-python
 
-print(instrucciones())
+instrucciones()
                     
 puntaje = 0
 
@@ -34,15 +33,6 @@ def comprobacion(resultado, puntaje, resultado_u):
         print("tu puntaje es", puntaje)
         return puntaje
 #Esta funcion la ocupare al terminar cada ejercicio
-
-#Todavia no se como generar aleatoriamente numeros 
-#para hacer una función para generar ejercicios distintos
-#El estado inicial de esta funcion será indicar el nivel de dificultad
-#si es 1 serán sumas si es 2 serán restaa... etc
-#El estado final será arrojar la operacion con numeros aleatorios
-# que se imprima y regresar resultado 
-#por lo mientras yo escribire los ejercicios a mano
-
 def nivel1():
     num = random.randint(1, 30)
     num1 = random.randint(1, 30)
@@ -83,16 +73,68 @@ def infinito():
     print(num,  "+",  num1 , "-",  num2,  "+",  num3,  "+" , num4)
     resultado = num + num1 - num2 + num3 + num4
     return resultado
-
-def multijugador(nivel1):
+"""
+def multijugador(puntaje):
     tamaño = int(input("ingrese el numero de jugadores: "))
     matriz = []
     for i in range(tamaño):
+        matriz.append([]);
         nombre = str(input("ingrese nombre del jugador: "))
-        matriz.append(nombre)
+        matriz[i].append(nombre)
+        cont = 0
+    while cont < tamaño:
+        ejercicio = 0
+        while ejercicio < 10:
+            ejercicio = ejercicio + 1
+            resultado = nivel1()
+            resultado_u = float(input("resuelva "))
+            puntaje = comprobacion(resultado, puntaje, resultado_u)
+            print("siguiente ejercicio")
+        if puntaje == 100 :
+            print("puntaje perfecto!!!, sigue practicando", puntaje)
+        else:
+            print("puntaje final", puntaje)
+        matriz[i].append(puntaje)
+        i = i + 1
+        cont = cont + 1
+    return matriz
+
+            
     print("los jugadores son", matriz)
     lista_anidada = [[nombre, nivel1()] for nombre in matriz]
     print(lista_anidada)
+"""
+
+"""
+es codigo basura pero considere importante que se viera la evolucion
+solo por está actuaizacion estará para mostrar el progreso y el cambio
+"""
+def multijugador(puntaje):
+    tamaño = int(input("Ingrese el número de jugadores: "))
+    matriz = []
+
+    for i in range(tamaño):
+        matriz.append([])
+        nombre = str(input("Ingrese nombre del jugador: "))
+        matriz[i].append(nombre)
+
+        cont = 0
+        while cont < 10:
+            resultado = nivel1()  
+            resultado_u = float(input("Resuelva: "))
+            puntaje = comprobacion(resultado, puntaje, resultado_u)
+            print("Siguiente ejercicio")
+            cont = cont +  1
+
+        if puntaje == 100:
+            print("Puntaje perfecto!!!, sigue practicando", puntaje)
+        else:
+            print("Puntaje final para", nombre, "es", puntaje)
+            matriz[i].append(puntaje)
+        puntaje = 0
+
+    return matriz
+
 
 
 
@@ -145,14 +187,12 @@ elif nivel == 4:
         resultado = infinito()
         puntaje = comprobacion(resultado, puntaje, resultado_u)
 elif nivel == 5:
-    multijugador(nivel1())
-    #mi matriz normal si funciona lo que estoy investigando es como anidar el 
-    #puntaje y hacerlo de forma eficiente
-    #estaba pensando en correr las funciones de las preguntas dentro del 
-    #multijugador para evitar los errores de variabes locales en el puntaje y 
-    #revolverme
-    #mi matriz si funciona y funcionaria algo asi
-
+    puntaje_inicial = 0
+    resultado_matriz = multijugador(puntaje_inicial)
+    print("Matriz de resultados:", resultado_matriz)
+else: 
+    print("entrada no valida")
+"""
 def multijugador1():
     tamaño = int(input("ingrese el numero de jugadores: "))
     matriz = []
@@ -164,7 +204,7 @@ def multijugador1():
     print(lista_anidada)
 #en vez de que se agreguen i + 1 se ira agregando el puntaje de cada jugador
 multijugador1()
-
+"""
     
 
 
