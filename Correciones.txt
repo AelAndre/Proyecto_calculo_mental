@@ -1,1 +1,9 @@
+Correcciones:
+
+Codigo Basura:
+Mi codigo anterior presentaba codigo basura tanto en codigo como comentado, esto era para justificar o demostrar el avance. Quería mostrar las versiones y como fue evolucionando las partes del codigo. En mi repositorio final el programa esta de forma limpia y ordenada sin comentarios incesarios o codigo basura.
+
+PEP8:
+Mi codigo antes no cumplia con los lineamientos del PEP8, corregi todos estos errores desde comentar las funciones, renombrar variables y estructurar mejor mi codigo. En el codigo final las funciones estan en orden y al comienzo del codigo, estan subdivididas en pequeñas funciones y están comentadas. 
+
 
